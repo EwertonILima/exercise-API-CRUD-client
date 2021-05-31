@@ -28,7 +28,23 @@ public class ClientService {
 	@Transactional(readOnly = true)
 	public ClientDTO findByid(Long id) {
 		Optional<Client> obj = clientRepository.findById(id);
-		Client entity = obj.orElseThrow(() -> new ResourceNotFoundException("Id " + id + " not found " ));
+		Client entity = obj.orElseThrow(() -> new ResourceNotFoundException("Id " + id + " not found "));
 		return new ClientDTO(entity);
+	}
+
+	@Transactional
+	public ClientDTO post(ClientDTO dto) {
+		Client entity = new Client();
+		copyDtoTOEntity(dto, entity);
+		entity = clientRepository.save(entity);
+		return new ClientDTO(entity);
+	}
+
+	private void copyDtoTOEntity(ClientDTO dto, Client entity) {
+		entity.setName(dto.getName());
+		entity.setCpf(dto.getCpf());
+		entity.setIncome(dto.getIncome());
+		entity.setBirthDate(dto.getBirthDate());
+		entity.setChildren(dto.getChildren());
 	}
 }

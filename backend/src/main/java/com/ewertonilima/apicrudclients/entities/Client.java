@@ -59,9 +59,9 @@ public class Client implements Serializable {
 		return cpf;
 	}
 
-//	public void setCpf(String cpf) {
-//		this.cpf = cpf;
-//	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
 	public Double getIncome() {
 		return income;
