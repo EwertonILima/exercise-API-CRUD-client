@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ewertonilima.apicrudclients.dto.ClientDTO;
 import com.ewertonilima.apicrudclients.entities.Client;
 import com.ewertonilima.apicrudclients.repositories.ClientRepository;
+import com.ewertonilima.apicrudclients.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ClientService {
@@ -24,9 +25,10 @@ public class ClientService {
 		return list.map(x -> new ClientDTO(x));
 	}
 
+	@Transactional(readOnly = true)
 	public ClientDTO findByid(Long id) {
 		Optional<Client> obj = clientRepository.findById(id);
-		Client entity = obj.get();
+		Client entity = obj.orElseThrow(() -> new ResourceNotFoundException("Id " + id + " not found " ));
 		return new ClientDTO(entity);
 	}
 }
