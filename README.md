@@ -21,7 +21,7 @@
 
 ### Your project should seed at least 10 clients with SIGNIFICANT data (not to use non-meaning data like “Name 1”, “Name 2”, etc.).
 
-### Attention: remember that by default JPA transforms attribute names in camelCase to snake_case, as was the case with DSCatalog's imgUrl field, which in the database had the name img_Url. So the birthDate field above will be created in the database as birth_Date, so your SQL script should follow this pattern.
+### Attention: remember that by default JPA transforms attribute names in camelCase to snake_case. So the birthDate field above will be created in the database as birth_Date, so your SQL script should follow this pattern.
 
 
 
